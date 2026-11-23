@@ -43,7 +43,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <Scripts />
-        <script src="https://dev.runeva.ai/eval-bot.js" data-eval-key="evalpk_sUv87KuTpNZsy4hCRPnCFsgkK2kDIgls" data-eval-endpoint="https://dev.runeva.ai" defer></script>
+        {import.meta.env.VITE_EVA_KEY && (
+          <script
+            src={import.meta.env.VITE_EVA_SDK_SRC}
+            data-eval-key={import.meta.env.VITE_EVA_KEY}
+            data-eval-endpoint={import.meta.env.VITE_EVA_ENDPOINT}
+            defer
+          />
+        )}
       </body>
     </html>
   );
