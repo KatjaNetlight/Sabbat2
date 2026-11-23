@@ -5,6 +5,7 @@ import appCss from "../styles.css?url";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { SeasonProvider } from "@/contexts/SeasonContext";
 import { SeasonPicker } from "@/components/SeasonPicker";
+import { ChatWidget } from "@/components/ChatWidget";
 
 // @uxid src/routes/__root::NotFoundComponent
 function NotFoundComponent() {
@@ -165,6 +166,7 @@ function RootComponent() {
             ))}
           </nav>
 
+          <ChatWidget />
           <Toaster />
         </div>
       </SeasonProvider>
