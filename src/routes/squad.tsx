@@ -15,6 +15,7 @@ export const Route = createFileRoute("/squad")({
 
 type Player = { id: string; name: string };
 
+// @uxid src/routes/squad::SquadPage
 function SquadPage() {
   const { user, openLoginDialog } = useAuth();
   const { season, seasonId } = useSeason();
@@ -92,8 +93,8 @@ function SquadPage() {
         </p>
       </section>
 
-      <form onSubmit={add} className="flex gap-2 max-w-xl">
-        <Input
+      <form /* @uxid src/routes/squad::SquadPage.form */ onSubmit={add} className="flex gap-2 max-w-xl">
+        <Input /* @uxid src/routes/squad::SquadPage.input */
           placeholder="Navn på ny spiller…"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -114,7 +115,7 @@ function SquadPage() {
               </div>
               <span className="font-semibold">{p.name}</span>
             </div>
-            <button onClick={() => remove(p)} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-destructive transition-colors">
+            <button /* @uxid src/routes/squad::SquadPage.button */ onClick={() => remove(p)} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-destructive transition-colors">
               <Trash2 className="h-4 w-4" />
             </button>
           </div>
@@ -132,7 +133,7 @@ function SquadPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             {others.map((p) => (
-              <button
+              <button /* @uxid src/routes/squad::SquadPage.button-2 */
                 key={p.id}
                 onClick={() => addToSeason(p)}
                 className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-border bg-card/50 pl-3 pr-2 py-1.5 text-sm text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors"

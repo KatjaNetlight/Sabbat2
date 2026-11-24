@@ -25,6 +25,7 @@ function resultTone(f: CalendarFixture) {
 }
 
 // Month grid (Monday first) with match days marked. Opens on the month of `fixtures[0]`, the nearest match.
+// @uxid src/components/FixtureCalendar::FixtureCalendar
 export function FixtureCalendar({ fixtures }: { fixtures: CalendarFixture[] }) {
   const [month, setMonth] = useState(() => {
     const [y, m] = (fixtures[0]?.played_at ?? dayKey(new Date())).split("-").map(Number);
@@ -53,7 +54,7 @@ export function FixtureCalendar({ fixtures }: { fixtures: CalendarFixture[] }) {
   return (
     <div className="rounded-xl border border-border bg-card p-3 sm:p-4 space-y-3">
       <div className="flex items-center justify-between gap-2">
-        <Button variant="ghost" size="icon" onClick={() => shift(-1)} aria-label="Forrige måned">
+        <Button /* @uxid src/components/FixtureCalendar::FixtureCalendar.button */ variant="ghost" size="icon" onClick={() => shift(-1)} aria-label="Forrige måned">
           <ChevronLeft className="h-4 w-4" />
         </Button>
         <div className="text-center">
@@ -62,7 +63,7 @@ export function FixtureCalendar({ fixtures }: { fixtures: CalendarFixture[] }) {
             {matchesThisMonth} {matchesThisMonth === 1 ? "kamp" : "kampe"}
           </div>
         </div>
-        <Button variant="ghost" size="icon" onClick={() => shift(1)} aria-label="Næste måned">
+        <Button /* @uxid src/components/FixtureCalendar::FixtureCalendar.button-2 */ variant="ghost" size="icon" onClick={() => shift(1)} aria-label="Næste måned">
           <ChevronRight className="h-4 w-4" />
         </Button>
       </div>

@@ -37,6 +37,7 @@ type FixtureEvent = { id: string; fixture_id: string; player_id: string; event_t
 
 const SUB_COUNT = 3;
 
+// @uxid src/routes/fixtures.$fixtureId::FixtureDetail
 function FixtureDetail() {
   const { user, openLoginDialog } = useAuth();
   const { seasons } = useSeason();
@@ -210,7 +211,7 @@ function FixtureDetail() {
           <Link to="/fixtures" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Alle kampe
           </Link>
-          <Button onClick={() => { if (!user) { openLoginDialog(); return; } setEditing(true); }} variant="outline" className="gap-2">
+          <Button /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.button */ onClick={() => { if (!user) { openLoginDialog(); return; } setEditing(true); }} variant="outline" className="gap-2">
             <Pencil className="h-4 w-4" /> Rediger
           </Button>
         </div>
@@ -336,10 +337,10 @@ function FixtureDetail() {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <button onClick={() => setEditing(false)} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <button /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.button-2 */ onClick={() => setEditing(false)} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Tilbage
         </button>
-        <Button onClick={saveDetails} className="gap-2">
+        <Button /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.button-3 */ onClick={saveDetails} className="gap-2">
           <Save className="h-4 w-4" /> Gem
         </Button>
       </div>
@@ -351,34 +352,34 @@ function FixtureDetail() {
 
       <div className="rounded-xl border border-border bg-card p-5 grid md:grid-cols-3 gap-3">
         <div>
-          <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Modstander</label>
-          <Input value={opponent} onChange={(e) => setOpponent(e.target.value)} maxLength={60} className="bg-input border-border mt-1" />
+          <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Modstander</label>
+          <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input */ value={opponent} onChange={(e) => setOpponent(e.target.value)} maxLength={60} className="bg-input border-border mt-1" />
         </div>
         <div>
-          <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Dato</label>
-          <Input type="date" value={playedAt} onChange={(e) => setPlayedAt(e.target.value)} className="bg-input border-border mt-1" />
+          <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label-2 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Dato</label>
+          <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-2 */ type="date" value={playedAt} onChange={(e) => setPlayedAt(e.target.value)} className="bg-input border-border mt-1" />
         </div>
         <div>
-          <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Sted</label>
-          <Input value={place} onChange={(e) => setPlace(e.target.value)} maxLength={80} placeholder="fx Ryparken" className="bg-input border-border mt-1" />
+          <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label-3 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Sted</label>
+          <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-3 */ value={place} onChange={(e) => setPlace(e.target.value)} maxLength={80} placeholder="fx Ryparken" className="bg-input border-border mt-1" />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Mødetid</label>
-            <Input type="time" value={meeting} onChange={(e) => setMeeting(e.target.value)} className="bg-input border-border mt-1" />
+            <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label-4 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Mødetid</label>
+            <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-4 */ type="time" value={meeting} onChange={(e) => setMeeting(e.target.value)} className="bg-input border-border mt-1" />
           </div>
           <div>
-            <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Kampstart</label>
-            <Input type="time" value={kickoff} onChange={(e) => setKickoff(e.target.value)} className="bg-input border-border mt-1" />
+            <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label-5 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Kampstart</label>
+            <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-5 */ type="time" value={kickoff} onChange={(e) => setKickoff(e.target.value)} className="bg-input border-border mt-1" />
           </div>
         </div>
         <div>
-          <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Vores mål</label>
-          <Input type="number" min="0" value={ourScore} onChange={(e) => setOurScore(e.target.value)} placeholder="–" className="bg-input border-border mt-1" />
+          <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label-6 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Vores mål</label>
+          <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-6 */ type="number" min="0" value={ourScore} onChange={(e) => setOurScore(e.target.value)} placeholder="–" className="bg-input border-border mt-1" />
         </div>
         <div>
-          <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Modstanderens mål</label>
-          <Input type="number" min="0" value={theirScore} onChange={(e) => setTheirScore(e.target.value)} placeholder="–" className="bg-input border-border mt-1" />
+          <label /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.label-7 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Modstanderens mål</label>
+          <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-7 */ type="number" min="0" value={theirScore} onChange={(e) => setTheirScore(e.target.value)} placeholder="–" className="bg-input border-border mt-1" />
         </div>
       </div>
 
@@ -404,7 +405,7 @@ function FixtureDetail() {
                     {/* Add buttons */}
                     <div className="flex gap-1.5">
                       {(["goal", "assist", "yellow_card", "red_card"] as EventType[]).map((type) => (
-                        <button
+                        <button /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.button-4 */
                           key={type}
                           onClick={() => addEvent(p.id, type)}
                           title={EVENT_LABELS[type]}
@@ -418,7 +419,7 @@ function FixtureDetail() {
                     {playerEvents.length > 0 && (
                       <div className="flex gap-1.5 flex-wrap">
                         {playerEvents.map((e) => (
-                          <button
+                          <button /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.button-5 */
                             key={e.id}
                             onClick={() => removeEvent(e.id)}
                             title="Fjern hændelse"
@@ -449,15 +450,15 @@ function FixtureDetail() {
           <div className="flex flex-col items-end gap-2">
             <div className="flex items-center gap-2">
               <span className="text-xs uppercase text-muted-foreground tracking-wider">Formation</span>
-              <Select value={presets[formation] ? formation : undefined} onValueChange={changeFormation}>
+              <Select /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.select */ value={presets[formation] ? formation : undefined} onValueChange={changeFormation}>
                 <SelectTrigger className="w-32 bg-card border-border"><SelectValue placeholder="Egen" /></SelectTrigger>
                 <SelectContent>
                   {Object.keys(presets).map((f) => <SelectItem key={f} value={f}>{f}</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>
-            <form onSubmit={applyCustomFormation} className="flex items-center gap-2">
-              <Input
+            <form /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.form */ onSubmit={applyCustomFormation} className="flex items-center gap-2">
+              <Input /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.input-8 */
                 value={customFormation}
                 onChange={(e) => setCustomFormation(e.target.value)}
                 placeholder={`Egen, fx ${teamSize === 7 ? "2-2-1-1" : "4-4-1-1"}`}
@@ -485,7 +486,7 @@ function FixtureDetail() {
                   {row.map((pos, pi) => {
                     const slot = offset + pi;
                     return (
-                      <SlotCard
+                      <SlotCard /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.slotcard */
                         key={slot}
                         slot={slot}
                         position={pos}
@@ -501,7 +502,7 @@ function FixtureDetail() {
               );
             })}
             <div className="flex justify-center">
-              <SlotCard slot={0} position="GK" isSub={false} current={lineupBySlot.get(0)} players={squad} usedPlayerIds={usedPlayerIds} onAssign={assign} />
+              <SlotCard /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.slotcard-2 */ slot={0} position="GK" isSub={false} current={lineupBySlot.get(0)} players={squad} usedPlayerIds={usedPlayerIds} onAssign={assign} />
             </div>
           </div>
         </div>
@@ -512,7 +513,7 @@ function FixtureDetail() {
             {Array.from({ length: SUB_COUNT }).map((_, i) => {
               const slot = 100 + i;
               return (
-                <SlotCard key={slot} slot={slot} position={`SUB ${i + 1}`} isSub current={lineupBySlot.get(slot)} players={squad} usedPlayerIds={usedPlayerIds} onAssign={assign} bench />
+                <SlotCard /* @uxid src/routes/fixtures.$fixtureId::FixtureDetail.slotcard-3 */ key={slot} slot={slot} position={`SUB ${i + 1}`} isSub current={lineupBySlot.get(slot)} players={squad} usedPlayerIds={usedPlayerIds} onAssign={assign} bench />
               );
             })}
           </div>
@@ -540,6 +541,7 @@ const EVENT_LABELS: Record<EventType, string> = {
 
 // ── Sub-components ──────────────────────────────────────────────────────────
 
+// @uxid src/routes/fixtures.$fixtureId::EventViewRow
 function EventViewRow({ icon, label, evts, playerName }: { icon: string; label: string; evts: FixtureEvent[]; playerName: (id: string) => string }) {
   if (evts.length === 0) return null;
   // Group by player for multi-goal display
@@ -564,6 +566,7 @@ function EventViewRow({ icon, label, evts, playerName }: { icon: string; label: 
   );
 }
 
+// @uxid src/routes/fixtures.$fixtureId::InfoCard
 function InfoCard({ icon, label, value, highlight }: { icon: React.ReactNode; label: string; value: string; highlight?: boolean }) {
   return (
     <div className={`rounded-xl border ${highlight ? "border-primary/50 shadow-[var(--shadow-glow)]" : "border-border"} bg-card p-3 text-center`}>
@@ -575,6 +578,7 @@ function InfoCard({ icon, label, value, highlight }: { icon: React.ReactNode; la
   );
 }
 
+// @uxid src/routes/fixtures.$fixtureId::PitchPlayer
 function PitchPlayer({ position, name, events, playerId }: { position: string; name: string | null; events: FixtureEvent[]; playerId?: string }) {
   const playerEvents = playerId ? events.filter((e) => e.player_id === playerId) : [];
   return (
@@ -597,6 +601,7 @@ function PitchPlayer({ position, name, events, playerId }: { position: string; n
   );
 }
 
+// @uxid src/routes/fixtures.$fixtureId::SlotCard
 function SlotCard({
   slot, position, isSub, current, players, usedPlayerIds, onAssign, bench,
 }: {
@@ -612,9 +617,9 @@ function SlotCard({
   return (
     <div className={`relative rounded-xl border ${bench ? "border-border bg-card" : "border-white/30 bg-background/85 backdrop-blur-sm"} p-1.5 sm:p-2 min-w-[76px] sm:min-w-[105px] max-w-[130px] shadow-[var(--shadow-card)]`}>
       <div className={`text-[9px] sm:text-[10px] uppercase tracking-wider mb-1 ${bench ? "text-muted-foreground" : "text-primary"}`}>{position}</div>
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover /* @uxid src/routes/fixtures.$fixtureId::SlotCard.popover */ open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <button className="h-8 text-xs bg-input border border-border rounded-md w-full px-2 flex items-center justify-between gap-1 hover:bg-accent truncate">
+          <button /* @uxid src/routes/fixtures.$fixtureId::SlotCard.button */ className="h-8 text-xs bg-input border border-border rounded-md w-full px-2 flex items-center justify-between gap-1 hover:bg-accent truncate">
             <span className="truncate">{currentPlayer?.name ?? <span className="text-muted-foreground">Vælg…</span>}</span>
             <ChevronsUpDown className="h-3 w-3 shrink-0 text-muted-foreground" />
           </button>
@@ -625,7 +630,7 @@ function SlotCard({
             <CommandEmpty className="py-2 text-xs text-center text-muted-foreground">Ingen fundet</CommandEmpty>
             <CommandGroup className="max-h-48 overflow-y-auto">
               {available.map((p) => (
-                <CommandItem key={p.id} value={p.name} onSelect={() => { onAssign(slot, position, isSub, p.id); setOpen(false); }} className="text-xs">
+                <CommandItem /* @uxid src/routes/fixtures.$fixtureId::SlotCard.commanditem */ key={p.id} value={p.name} onSelect={() => { onAssign(slot, position, isSub, p.id); setOpen(false); }} className="text-xs">
                   {p.name}
                 </CommandItem>
               ))}
@@ -634,7 +639,7 @@ function SlotCard({
         </PopoverContent>
       </Popover>
       {current && (
-        <button onClick={() => onAssign(slot, position, isSub, null)} className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center hover:opacity-90" aria-label="Fjern">
+        <button /* @uxid src/routes/fixtures.$fixtureId::SlotCard.button-2 */ onClick={() => onAssign(slot, position, isSub, null)} className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center hover:opacity-90" aria-label="Fjern">
           <X className="h-3 w-3" />
         </button>
       )}

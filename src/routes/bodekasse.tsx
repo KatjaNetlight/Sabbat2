@@ -17,6 +17,7 @@ export const Route = createFileRoute("/bodekasse")({
 type Player = { id: string; name: string };
 type Fine = { id: string; player_id: string; amount: number; reason: string; paid: boolean; created_at: string };
 
+// @uxid src/routes/bodekasse::BodekassePage
 function BodekassePage() {
   const { user, openLoginDialog } = useAuth();
   const [players, setPlayers] = useState<Player[]>([]);
@@ -114,17 +115,17 @@ function BodekassePage() {
       </div>
 
       {/* Add fine form */}
-      <form onSubmit={add} className="rounded-xl border border-border bg-card p-4 space-y-3">
+      <form /* @uxid src/routes/bodekasse::BodekassePage.form */ onSubmit={add} className="rounded-xl border border-border bg-card p-4 space-y-3">
         <p className="text-xs uppercase tracking-wider text-muted-foreground">Tilføj bøde</p>
-        <Select value={playerId} onValueChange={setPlayerId}>
+        <Select /* @uxid src/routes/bodekasse::BodekassePage.select */ value={playerId} onValueChange={setPlayerId}>
           <SelectTrigger className="bg-input border-border"><SelectValue placeholder="Vælg spiller…" /></SelectTrigger>
           <SelectContent>
             {players.map((p) => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}
           </SelectContent>
         </Select>
         <div className="grid grid-cols-2 gap-2">
-          <Input type="number" min="1" placeholder="Beløb (kr)" value={amount} onChange={(e) => setAmount(e.target.value)} className="bg-input border-border" />
-          <Input placeholder="Årsag…" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={200} className="bg-input border-border" />
+          <Input /* @uxid src/routes/bodekasse::BodekassePage.input */ type="number" min="1" placeholder="Beløb (kr)" value={amount} onChange={(e) => setAmount(e.target.value)} className="bg-input border-border" />
+          <Input /* @uxid src/routes/bodekasse::BodekassePage.input-2 */ placeholder="Årsag…" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={200} className="bg-input border-border" />
         </div>
         <Button type="submit" className="w-full gap-2"><Plus className="h-4 w-4" /> Tilføj bøde</Button>
       </form>
@@ -153,7 +154,7 @@ function BodekassePage() {
                   </span>
                 </div>
                 {owed > 0 && (
-                  <button
+                  <button /* @uxid src/routes/bodekasse::BodekassePage.button */
                     onClick={() => markAllPaid(p.id)}
                     className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-md bg-primary/10 hover:bg-primary/20 text-primary text-xs font-semibold uppercase tracking-wider py-2.5 transition-colors"
                   >
@@ -171,8 +172,8 @@ function BodekassePage() {
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-display text-xl">Alle bøder</h2>
-          <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
-            <Checkbox checked={showPaid} onCheckedChange={(v) => setShowPaid(!!v)} />
+          <label /* @uxid src/routes/bodekasse::BodekassePage.label */ className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
+            <Checkbox /* @uxid src/routes/bodekasse::BodekassePage.checkbox */ checked={showPaid} onCheckedChange={(v) => setShowPaid(!!v)} />
             Vis betalte
           </label>
         </div>
@@ -185,7 +186,7 @@ function BodekassePage() {
                 key={f.id}
                 className={`flex items-start gap-3 px-4 py-3 ${f.paid ? "opacity-60" : ""}`}
               >
-                <Checkbox
+                <Checkbox /* @uxid src/routes/bodekasse::BodekassePage.checkbox-2 */
                   checked={f.paid}
                   onCheckedChange={() => togglePaid(f)}
                   className="mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:border-primary shrink-0"
@@ -207,7 +208,7 @@ function BodekassePage() {
                     {f.paid && <span className="ml-2 text-primary font-semibold">✓ Betalt</span>}
                   </div>
                 </div>
-                <button
+                <button /* @uxid src/routes/bodekasse::BodekassePage.button-2 */
                   onClick={() => remove(f.id)}
                   className="text-muted-foreground hover:text-destructive p-1 -mr-1 shrink-0 mt-0.5"
                   aria-label="Slet bøde"

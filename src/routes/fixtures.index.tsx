@@ -28,6 +28,7 @@ type Fixture = {
   meeting_time: string | null;
 };
 
+// @uxid src/routes/fixtures.index::FixturesPage
 function FixturesPage() {
   const { user, openLoginDialog } = useAuth();
   const { season, seasonId } = useSeason();
@@ -111,8 +112,8 @@ function FixturesPage() {
         <RecordCard label="Indkasseret" value={conceded} tone="destructive" />
       </div>
 
-      <form onSubmit={add} className="flex flex-col sm:flex-row gap-2">
-        <Input
+      <form /* @uxid src/routes/fixtures.index::FixturesPage.form */ onSubmit={add} className="flex flex-col sm:flex-row gap-2">
+        <Input /* @uxid src/routes/fixtures.index::FixturesPage.input */
           placeholder="Modstanderens navn…"
           value={opponent}
           onChange={(e) => setOpponent(e.target.value)}
@@ -120,7 +121,7 @@ function FixturesPage() {
           className="bg-card border-border sm:flex-1"
         />
         <div className="flex gap-2">
-          <Input
+          <Input /* @uxid src/routes/fixtures.index::FixturesPage.input-2 */
             type="date"
             aria-label="Kampdato"
             value={playedAt}
@@ -139,7 +140,7 @@ function FixturesPage() {
         </span>
         <div className="flex items-center gap-2">
         {seasonId && fixtures.length > 0 && <CalendarExport seasonId={seasonId} />}
-        <ToggleGroup
+        <ToggleGroup /* @uxid src/routes/fixtures.index::FixturesPage.togglegroup */
           type="single"
           variant="outline"
           size="sm"
@@ -205,7 +206,7 @@ function FixturesPage() {
                   ? `${f.our_score}–${f.their_score}`
                   : <span className="text-muted-foreground text-xs font-sans">Ikke spillet</span>}
               </div>
-              <button
+              <button /* @uxid src/routes/fixtures.index::FixturesPage.button */
                 onClick={(e) => { e.preventDefault(); remove(f); }}
                 className="text-muted-foreground hover:text-destructive p-1 -mr-1 opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity"
                 aria-label="Slet kamp"
@@ -227,6 +228,7 @@ function FixturesPage() {
 }
 
 // Subscriptions stay in sync: new matches, times and results show up in the phone's calendar.
+// @uxid src/routes/fixtures.index::CalendarExport
 function CalendarExport({ seasonId }: { seasonId: string }) {
   // Only rendered once the menu opens, so window is available.
   const feed = () => `${window.location.host}/kalender/${seasonId}`;
@@ -239,12 +241,12 @@ function CalendarExport({ seasonId }: { seasonId: string }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
-          <a href={`webcal://${feed()}`}>
+          <a /* @uxid src/routes/fixtures.index::CalendarExport.link */ href={`webcal://${feed()}`}>
             <CalendarPlus className="h-4 w-4" /> iPhone / Apple Kalender
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a
+          <a /* @uxid src/routes/fixtures.index::CalendarExport.link-2 */
             href={`https://calendar.google.com/calendar/render?cid=${encodeURIComponent(`webcal://${feed()}`)}`}
             target="_blank"
             rel="noreferrer"
@@ -253,7 +255,7 @@ function CalendarExport({ seasonId }: { seasonId: string }) {
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a href={`${window.location.protocol}//${feed()}?download`}>
+          <a /* @uxid src/routes/fixtures.index::CalendarExport.link-3 */ href={`${window.location.protocol}//${feed()}?download`}>
             <Download className="h-4 w-4" /> Download .ics-fil
           </a>
         </DropdownMenuItem>
@@ -262,6 +264,7 @@ function CalendarExport({ seasonId }: { seasonId: string }) {
   );
 }
 
+// @uxid src/routes/fixtures.index::RecordCard
 function RecordCard({ label, value, tone }: { label: string; value: number; tone?: "primary" | "destructive" }) {
   const color = tone === "primary" ? "text-primary" : tone === "destructive" ? "text-destructive" : "text-foreground";
   return (

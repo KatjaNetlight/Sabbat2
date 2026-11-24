@@ -34,6 +34,7 @@ function formatCountdown(ms: number): string {
 
 // Sign-up for one fixture. Open to every member — no login — since players answer for themselves.
 // After the deadline it locks; a logged-in admin can still make late changes.
+// @uxid src/components/AttendancePanel::AttendancePanel
 export function AttendancePanel({
   fixtureId, players, playedAt, kickoffTime,
 }: { fixtureId: string; players: Player[]; playedAt: string; kickoffTime: string | null }) {
@@ -123,13 +124,13 @@ export function AttendancePanel({
       <div className="grid gap-3 md:grid-cols-3">
         <AttendanceColumn title="Ej tilkendegivet" count={groups.pending.length} empty="Alle har svaret">
           {groups.pending.map((p) => (
-            <PlayerRow key={p.id} player={p} current={null} onAnswer={answer} locked={locked}>
+            <PlayerRow /* @uxid src/components/AttendancePanel::AttendancePanel.playerrow */ key={p.id} player={p} current={null} onAnswer={answer} locked={locked}>
               {locked ? (
                 <Lock className="h-4 w-4 text-muted-foreground" />
               ) : (
                 <>
-                  <AnswerButton kind="yes" onClick={() => answer(p.id, "yes")} />
-                  <AnswerButton kind="no" onClick={() => answer(p.id, "no")} />
+                  <AnswerButton /* @uxid src/components/AttendancePanel::AttendancePanel.answerbutton */ kind="yes" onClick={() => answer(p.id, "yes")} />
+                  <AnswerButton /* @uxid src/components/AttendancePanel::AttendancePanel.answerbutton-2 */ kind="no" onClick={() => answer(p.id, "no")} />
                 </>
               )}
             </PlayerRow>
@@ -138,11 +139,11 @@ export function AttendancePanel({
 
         <AttendanceColumn title="Tilmeldt" count={groups.yes.length} tone="primary" empty="Ingen tilmeldte endnu">
           {groups.yes.map((p) => (
-            <PlayerRow key={p.id} player={p} current="yes" onAnswer={answer} locked={locked}>
+            <PlayerRow /* @uxid src/components/AttendancePanel::AttendancePanel.playerrow-2 */ key={p.id} player={p} current="yes" onAnswer={answer} locked={locked}>
               {locked ? (
                 <Lock className="h-4 w-4 text-muted-foreground" />
               ) : (
-                <AnswerButton kind="no" onClick={() => answer(p.id, "no")} label="Afmeld igen" icon={<X className="h-4 w-4" />} />
+                <AnswerButton /* @uxid src/components/AttendancePanel::AttendancePanel.answerbutton-3 */ kind="no" onClick={() => answer(p.id, "no")} label="Afmeld igen" icon={<X className="h-4 w-4" />} />
               )}
             </PlayerRow>
           ))}
@@ -150,11 +151,11 @@ export function AttendancePanel({
 
         <AttendanceColumn title="Afmeldt" count={groups.no.length} tone="destructive" empty="Ingen afmeldte">
           {groups.no.map((p) => (
-            <PlayerRow key={p.id} player={p} current="no" onAnswer={answer} locked={locked}>
+            <PlayerRow /* @uxid src/components/AttendancePanel::AttendancePanel.playerrow-3 */ key={p.id} player={p} current="no" onAnswer={answer} locked={locked}>
               {locked ? (
                 <Lock className="h-4 w-4 text-muted-foreground" />
               ) : (
-                <AnswerButton kind="yes" onClick={() => answer(p.id, "yes")} label="Tilmeld igen" />
+                <AnswerButton /* @uxid src/components/AttendancePanel::AttendancePanel.answerbutton-4 */ kind="yes" onClick={() => answer(p.id, "yes")} label="Tilmeld igen" />
               )}
             </PlayerRow>
           ))}
@@ -164,6 +165,7 @@ export function AttendancePanel({
   );
 }
 
+// @uxid src/components/AttendancePanel::SignupCountdown
 function SignupCountdown({
   remaining, deadline, canOverride,
 }: { remaining: number | null; deadline: Date; canOverride: boolean }) {
@@ -202,6 +204,7 @@ function SignupCountdown({
   );
 }
 
+// @uxid src/components/AttendancePanel::AttendanceColumn
 function AttendanceColumn({
   title, count, tone, empty, children,
 }: { title: string; count: number; tone?: "primary" | "destructive"; empty: string; children: React.ReactNode }) {
@@ -224,6 +227,7 @@ function AttendanceColumn({
   );
 }
 
+// @uxid src/components/AttendancePanel::PlayerRow
 function PlayerRow({
   player, current, onAnswer, locked, children,
 }: {
@@ -250,14 +254,14 @@ function PlayerRow({
       <ContextMenuContent className="w-52">
         <div className="px-2 py-1.5 text-xs font-semibold truncate">{player.name}</div>
         <ContextMenuSeparator />
-        <ContextMenuItem disabled={current === "yes"} onSelect={() => onAnswer(player.id, "yes")} className="gap-2">
+        <ContextMenuItem /* @uxid src/components/AttendancePanel::PlayerRow.contextmenuitem */ disabled={current === "yes"} onSelect={() => onAnswer(player.id, "yes")} className="gap-2">
           <Plus className="h-4 w-4 text-primary" /> Tilmeld
         </ContextMenuItem>
-        <ContextMenuItem disabled={current === "no"} onSelect={() => onAnswer(player.id, "no")} className="gap-2">
+        <ContextMenuItem /* @uxid src/components/AttendancePanel::PlayerRow.contextmenuitem-2 */ disabled={current === "no"} onSelect={() => onAnswer(player.id, "no")} className="gap-2">
           <Minus className="h-4 w-4 text-destructive" /> Afmeld
         </ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem disabled={current === null} onSelect={() => onAnswer(player.id, null)} className="gap-2">
+        <ContextMenuItem /* @uxid src/components/AttendancePanel::PlayerRow.contextmenuitem-3 */ disabled={current === null} onSelect={() => onAnswer(player.id, null)} className="gap-2">
           <RotateCcw className="h-4 w-4" /> Flyt til Ej tilkendegivet
         </ContextMenuItem>
       </ContextMenuContent>
@@ -265,13 +269,14 @@ function PlayerRow({
   );
 }
 
+// @uxid src/components/AttendancePanel::AnswerButton
 function AnswerButton({
   kind, onClick, label, icon,
 }: { kind: Status; onClick: () => void; label?: string; icon?: React.ReactNode }) {
   const yes = kind === "yes";
   const title = label ?? (yes ? "Kan spille" : "Kan ikke spille");
   return (
-    <button
+    <button /* @uxid src/components/AttendancePanel::AnswerButton.button */
       onClick={onClick}
       title={title}
       aria-label={title}
