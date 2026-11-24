@@ -45,6 +45,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <script src="http://localhost:3000/eval-bot.js" data-eval-key="evalpk_LLhrgcXF4Sfy0FkBNeiRBrvWGncPwV44" data-eval-endpoint="http://localhost:3000" defer></script>
       </body>
     </html>
   );
