@@ -8,6 +8,7 @@ type Message = { role: "user" | "assistant"; content: string };
 const SUGGESTIONS = ["Hvornår er næste kamp?", "Hvem er topscorer?", "Hvem skylder flest bøder?"];
 
 // Renders **bold** inline; everything else is plain text with line breaks kept.
+// @uxid src/components/ChatWidget::Rich
 function Rich({ text }: { text: string }) {
   return (
     <>
@@ -19,6 +20,7 @@ function Rich({ text }: { text: string }) {
 }
 
 // Floating team assistant in the bottom-right corner. Only shown to logged-in users.
+// @uxid src/components/ChatWidget::ChatWidget
 export function ChatWidget() {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
@@ -92,7 +94,7 @@ export function ChatWidget() {
               <div className="h-7 w-7 rounded-md bg-primary flex items-center justify-center text-primary-foreground font-display text-sm">FC</div>
               <div className="font-display text-lg leading-none">Holdassistenten</div>
             </div>
-            <button onClick={() => setOpen(false)} title="Luk" className="p-1.5 rounded-md text-muted-foreground hover:text-foreground">
+            <button /* @uxid src/components/ChatWidget::ChatWidget.button */ onClick={() => setOpen(false)} title="Luk" className="p-1.5 rounded-md text-muted-foreground hover:text-foreground">
               <X className="h-4 w-4" />
             </button>
           </div>
@@ -103,7 +105,7 @@ export function ChatWidget() {
                 <p className="text-muted-foreground">Spørg mig om kampe, truppen, statistik, bøder eller hvordan appen virker.</p>
                 <div className="flex flex-wrap gap-2">
                   {SUGGESTIONS.map((s) => (
-                    <button
+                    <button /* @uxid src/components/ChatWidget::ChatWidget.button-2 */
                       key={s}
                       onClick={() => send(s)}
                       className="rounded-full border border-border px-3 py-1.5 text-xs hover:border-primary hover:text-primary transition-colors"
@@ -127,21 +129,21 @@ export function ChatWidget() {
             ))}
           </div>
 
-          <form
+          <form /* @uxid src/components/ChatWidget::ChatWidget.form */
             onSubmit={(e) => {
               e.preventDefault();
               send(input);
             }}
             className="flex items-center gap-2 border-t border-border p-2"
           >
-            <input
+            <input /* @uxid src/components/ChatWidget::ChatWidget.input */
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Skriv et spørgsmål…"
               maxLength={2000}
               className="flex-1 bg-transparent px-2 py-2 text-base sm:text-sm outline-none placeholder:text-muted-foreground"
             />
-            <button
+            <button /* @uxid src/components/ChatWidget::ChatWidget.button-3 */
               type="submit"
               disabled={busy || !input.trim()}
               title="Send"
@@ -153,7 +155,7 @@ export function ChatWidget() {
         </div>
       )}
 
-      <button
+      <button /* @uxid src/components/ChatWidget::ChatWidget.button-4 */
         onClick={() => setOpen((o) => !o)}
         title={open ? "Luk assistent" : "Spørg holdassistenten"}
         className="h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:scale-105 transition-transform"

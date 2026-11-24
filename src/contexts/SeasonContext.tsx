@@ -21,6 +21,7 @@ interface SeasonContextType {
 
 const SeasonContext = createContext<SeasonContextType | null>(null);
 
+// @uxid src/contexts/SeasonContext::SeasonProvider
 export function SeasonProvider({ children }: { children: React.ReactNode }) {
   const [seasons, setSeasons] = useState<Season[]>([]);
   const [seasonId, setSeasonIdState] = useState<string | null>(null);
@@ -97,15 +98,15 @@ export function SeasonProvider({ children }: { children: React.ReactNode }) {
   return (
     <SeasonContext.Provider value={{ seasons, season, seasonId, setSeasonId, loading, openNewSeasonDialog }}>
       {children}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <Dialog /* @uxid src/contexts/SeasonContext::SeasonProvider.dialog */ open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
             <DialogTitle className="font-display text-2xl">Ny sæson</DialogTitle>
           </DialogHeader>
-          <form onSubmit={createSeason} className="space-y-4 mt-2">
+          <form /* @uxid src/contexts/SeasonContext::SeasonProvider.form */ onSubmit={createSeason} className="space-y-4 mt-2">
             <div className="space-y-1.5">
-              <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Navn</label>
-              <Input
+              <label /* @uxid src/contexts/SeasonContext::SeasonProvider.label */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Navn</label>
+              <Input /* @uxid src/contexts/SeasonContext::SeasonProvider.input */
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Forår 26/27"
@@ -114,8 +115,8 @@ export function SeasonProvider({ children }: { children: React.ReactNode }) {
                 autoFocus
               />
             </div>
-            <label className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Checkbox checked={makeActive} onCheckedChange={(v) => setMakeActive(v === true)} />
+            <label /* @uxid src/contexts/SeasonContext::SeasonProvider.label-2 */ className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Checkbox /* @uxid src/contexts/SeasonContext::SeasonProvider.checkbox */ checked={makeActive} onCheckedChange={(v) => setMakeActive(v === true)} />
               Gør til aktiv sæson
             </label>
             <Button type="submit" className="w-full" disabled={submitting}>

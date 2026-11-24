@@ -14,6 +14,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+// @uxid src/contexts/AuthContext::AuthProvider
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -61,15 +62,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return (
     <AuthContext.Provider value={{ user, signOut, openLoginDialog }}>
       {children}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <Dialog /* @uxid src/contexts/AuthContext::AuthProvider.dialog */ open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
             <DialogTitle className="font-display text-2xl">Log ind</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSignIn} className="space-y-4 mt-2">
+          <form /* @uxid src/contexts/AuthContext::AuthProvider.form */ onSubmit={handleSignIn} className="space-y-4 mt-2">
             <div className="space-y-1.5">
-              <label className="text-[10px] uppercase tracking-wider text-muted-foreground">E-mail</label>
-              <Input
+              <label /* @uxid src/contexts/AuthContext::AuthProvider.label */ className="text-[10px] uppercase tracking-wider text-muted-foreground">E-mail</label>
+              <Input /* @uxid src/contexts/AuthContext::AuthProvider.input */
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -79,8 +80,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] uppercase tracking-wider text-muted-foreground">Adgangskode</label>
-              <Input
+              <label /* @uxid src/contexts/AuthContext::AuthProvider.label-2 */ className="text-[10px] uppercase tracking-wider text-muted-foreground">Adgangskode</label>
+              <Input /* @uxid src/contexts/AuthContext::AuthProvider.input-2 */
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

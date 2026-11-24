@@ -1,6 +1,7 @@
 import { createRouter, useRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
+// @uxid src/router::DefaultErrorComponent
 function DefaultErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   const router = useRouter();
 
@@ -33,7 +34,7 @@ function DefaultErrorComponent({ error, reset }: { error: unknown; reset: () => 
           </pre>
         )}
         <div className="mt-6 flex items-center justify-center gap-3">
-          <button
+          <button /* @uxid src/router::DefaultErrorComponent.button */
             onClick={() => {
               router.invalidate();
               reset();
@@ -42,7 +43,7 @@ function DefaultErrorComponent({ error, reset }: { error: unknown; reset: () => 
           >
             Try again
           </button>
-          <a
+          <a /* @uxid src/router::DefaultErrorComponent.link */
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
